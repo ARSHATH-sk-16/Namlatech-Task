@@ -1,0 +1,72 @@
+
+.form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.hotel-form {
+  background: white;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 25px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hotel-form h2 {
+  margin-bottom: 10px;
+}
+
+.hotel-form label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.hotel-form input,
+.hotel-form textarea {
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font: inherit;
+}
+
+.hotel-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.image-preview {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.form-buttons button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #3478ce;
+  color: white;
+}
+
+.form-buttons button:last-child {
+  background: #777777;
+}
