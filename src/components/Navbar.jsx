@@ -1,10 +1,11 @@
 import './Navbar.css'
+import { Link } from 'react-router-dom'
 function Navbar({ search, setSearch,onAddHotel }) {
   return (
     <nav className="navbar">
 
       <div className="logo">
-        <h2>HotelHub</h2>
+        <h2>Hotel Hub</h2>
       </div>
 
       <div className="search-box">
@@ -18,10 +19,10 @@ function Navbar({ search, setSearch,onAddHotel }) {
       </div>
 
       <div className="nav-links">
-        <a href="/">Home</a>
+        <Link to="/">Home</Link>
 
         <button className="add-btn" onClick={onAddHotel}>
-          + Add Hotel
+           ➕ Add Hotel
         </button>
       </div>
 

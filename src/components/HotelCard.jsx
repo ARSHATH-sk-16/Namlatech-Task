@@ -1,5 +1,7 @@
 import './HotelCard.css'
+import { Link } from 'react-router-dom'
 function HotelCard(props){
+    
     return(
         <div className="hotel-card">
 
@@ -12,6 +14,13 @@ function HotelCard(props){
                     <h2>₹{props.price}</h2>
                     <button className="edit-btn" onClick={props.onEdit}> Edit </button>
                     <button className="delete-btn" onClick={props.onDelete}> Delete </button>
+                    <Link
+                        to={`/hotel/${props.id}`}
+                        state={{ hotel: props.hotel }}
+                        className="details-btn"
+                        >
+                        View Details
+                    </Link>
                 </div>
             
         </div>

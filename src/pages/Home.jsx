@@ -1,99 +1,77 @@
 import HotelCard from '../components/HotelCard'
-import hotel1 from '../assets/hotel1.png'
-import hotel2 from '../assets/hotel2.png'
-import hotel3 from '../assets/hotel1.png'
 import './Home.css'
 import FilterSidebar from '../components/FilterSidebar'
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import HotelForm from '../components/HotelForm'
+import { Helmet } from 'react-helmet-async'
+import { useDispatch, useSelector } from 'react-redux'
+import { addHotel, updateHotel, deleteHotel } from '../redux/hotelSlice'
+
 
 function Home({ search, priceRange, setPriceRange,showAddForm, setShowAddForm }){
 
+  //pagination 
 const [currentPage, setCurrentPage] = useState(1)
-const hotelsPerPage = 2
-useEffect(() => {
-  setCurrentPage(1)
-}, [search, priceRange])
+const hotelsPerPage = 3
+// useEffect(() => {
+//   setCurrentPage(1)
+// }, [search, priceRange])
 
 
-const [hotels,setHotels] =useState([
-    {
-        id:1,
-        image:hotel1,
-        name:"Grand place",
-        location: 'Chennai, Tamil Nadu',
-        description:"A beautiful luxury hotel with swimming pool and restaurant.",
-        price:3500
-    },
-    {
-        id:2,
-        image:hotel2,
-        name:"Ocean View",
-         location: 'Goa, India',
-        description:"Enjoy a relaxing stay with beautiful sea views.",
-        price:4500
-    },
-    {
-        id:3,
-        image:hotel3,
-        name:"Taj Hotel",
-        location: 'Ooty, Tamil Nadu',
-        description:"A peaceful hotel surrounded by beautiful mountains.",
-        price:6500
-    },
+// redux is used here 
+const dispatch = useDispatch()
 
-]);
-const [showPopup, setShowPopup] = useState(false)
+const hotels = useSelector((state) => state.hotels.hotels)
 
+// noticed changin the popup message 
+const [successMessage, setSuccessMessage] = useState('');
+
+// delete handel by the redux
 const handleDelete = (id) => {
-  const updatedHotels = hotels.filter((hotel) => hotel.id !== id)
+  dispatch(deleteHotel(id))
 
-  setHotels(updatedHotels)
-  setShowPopup(true)
+  setSuccessMessage('Hotel deleted successfully!')
 
   setTimeout(() => {
-    setShowPopup(false)
+    setSuccessMessage('')
   }, 2000)
 }
+
+// edit hotles 
+
 const [editingHotel, setEditingHotel] = useState(null)
 
 const handleEdit = (hotel) => {
   setEditingHotel(hotel)
 }
 
+//update handle by redux 
 const handleUpdate = (updatedHotel) => {
-  const updatedHotels = hotels.map((hotel) =>
-    hotel.id === updatedHotel.id ? updatedHotel : hotel
-  )
-
-  setHotels(updatedHotels)
+  dispatch(updateHotel(updatedHotel))
   setEditingHotel(null)
-  setShowPopup(true)
+
+  setSuccessMessage('Hotel updated successfully!')
 
   setTimeout(() => {
-    setShowPopup(false)
+    setSuccessMessage('')
   }, 2000)
 }
 
+// adding hotel by redux
 const handleAddHotel = (newHotel) => {
   const hotelWithId = {
     ...newHotel,
     id: Date.now()
   }
 
-  setHotels((previousHotels) => [
-    ...previousHotels,
-    hotelWithId
-  ])
+  dispatch(addHotel(hotelWithId))
+  setShowAddForm(false)
 
-  setEditingHotel(null)
-  setShowPopup(true)
+  setSuccessMessage('New hotel added successfully!')
 
   setTimeout(() => {
-    setShowPopup(false)
+    setSuccessMessage('')
   }, 2000)
-
-  setShowAddForm(false)
 }
 
 const filteredHotels = hotels.filter((hotel) => {
@@ -115,9 +93,12 @@ const filteredHotels = hotels.filter((hotel) => {
   else if (priceRange === 'above6000') {
     matchesPrice = hotel.price > 6000
   }
+  
 
   return matchesSearch && matchesPrice
+  
 })
+
 // Calculate the last and first hotel indexes
 const lastIndex = currentPage * hotelsPerPage
 const firstIndex = lastIndex - hotelsPerPage
@@ -154,6 +135,8 @@ return(
                             price={hotel.price}
                             onDelete={() => handleDelete(hotel.id)}
                             onEdit={() => handleEdit(hotel)}
+                            id={hotel.id}
+                            hotel={hotel}
                         />
                     ))
                          ) : (
@@ -181,11 +164,11 @@ return(
                     </div>
 
         </div>
-        {showPopup && (
-                <div className="success-popup">
-                    Hotel deleted successfully!
-                </div>
-        )}
+          {successMessage && (
+            <div className="success-popup">
+              {successMessage}
+            </div>
+          )}
 
         {editingHotel && (
         <HotelForm
@@ -202,6 +185,17 @@ return(
                 onCancel={() => setShowAddForm(false)}
             />
         )}
+        <Helmet>
+          <title>HotelHub | Find Your Perfect Hotel</title>
+          <meta
+            name="description"
+            content="Explore hotels, compare prices, and find the perfect place for your next stay with HotelHub."
+          />
+          <meta
+            name="keywords"
+            content="hotels, hotel booking, hotel search, affordable hotels"
+          />
+        </Helmet>
     </>
     
 )

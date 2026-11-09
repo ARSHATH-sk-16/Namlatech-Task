@@ -92,3 +92,47 @@
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
   z-index: 1000;
 }
+
+/* Tablet */
+@media (max-width: 900px) {
+  .hotel-layout {
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .hotel-card {
+    gap: 15px;
+  }
+
+  .hotel-card img {
+    width: 220px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .hotel-layout {
+    flex-direction: column;
+    padding: 12px;
+  }
+
+  .hotel-card {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .hotel-card img {
+    width: 100%;
+    height: 190px;
+  }
+
+  .hotel-list {
+    width: 100%;
+  }
+
+  .pagination {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
