@@ -1,7 +1,7 @@
 import HotelCard from '../components/HotelCard'
 import './Home.css'
 import FilterSidebar from '../components/FilterSidebar'
-import {  useState } from 'react'
+import {  useState,useEffect } from 'react'
 import HotelForm from '../components/HotelForm'
 import { Helmet } from 'react-helmet-async'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,10 +13,10 @@ function Home({ search, priceRange, setPriceRange,showAddForm, setShowAddForm })
   //pagination 
 const [currentPage, setCurrentPage] = useState(1)
 const hotelsPerPage = 3
-// useEffect(() => {
-//   setCurrentPage(1)
-// }, [search, priceRange])
-
+useEffect(() => {
+  setCurrentPage(1)
+}, [search, priceRange])
+// i need to focus here 
 
 // redux is used here 
 const dispatch = useDispatch()
@@ -108,16 +108,6 @@ const currentHotels = filteredHotels.slice(firstIndex, lastIndex)
 
 // Calculate total pages
 const totalPages = Math.ceil(filteredHotels.length / hotelsPerPage)
-// const HotelList = Hotels.map(
-//     (Hotels)=><HotelCard
-//     key={Hotels.id}
-//     name={Hotels.name}
-//     description={Hotels.description}
-//     price={Hotels.price}
-//     location={Hotels.location}
-//     image={Hotels.image}
-//     />
-// )
 
 return(
     <>

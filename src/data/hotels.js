@@ -99,13 +99,7 @@ const hotels = [
     description: 'Experience contemporary comfort with spacious suites, modern interiors, a refreshing pool and convenient city access.',
     price: 1500,
 
-    // next we will add this 
-    
-    // rating: 4.4,
-    // reviews: 135,
-    // amenities: ['Swimming Pool', 'Free Wi-Fi', 'Gym', 'Restaurant', 'Parking'],
-    // latitude: 11.0168,
-    // longitude: 76.9558
+  
   }
 ]
 

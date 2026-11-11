@@ -9,69 +9,55 @@ function HotelForm({ hotel, onSave, onCancel }) {
     const [price, setPrice] = useState(hotel?.price || '')
     const [image, setImage] = useState(hotel?.image || '')
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0]
-
-    if (file) {
-      const reader = new FileReader()
-
-      reader.onloadend = () => {
-        setImage(reader.result)
+    const handleImageChange = (e) => {
+      const file = e.target.files[0]
+      if (file) {
+        const reader = new FileReader()
+        reader.onloadend = () => {
+          setImage(reader.result)
+        }
+        reader.readAsDataURL(file)
       }
-
-      reader.readAsDataURL(file)
     }
-  }
 
-  const handleSubmit = (e) => {
-  e.preventDefault()
+      const handleSubmit = (e) => {
+        e.preventDefault()
 
-  if (!name.trim()) {
-    alert('Please enter hotel name')
-    return
-  }
+        if (!name.trim()) {
+          alert('Please enter hotel name')
+          return
+        }
 
-  if (!location.trim()) {
-    alert('Please enter hotel location')
-    return
-  }
+        if (!location.trim()) {
+          alert('Please enter hotel location')
+          return
+        }
 
-  if (!description.trim()) {
-    alert('Please enter hotel description')
-    return
-  }
+        if (!description.trim()) {
+          alert('Please enter hotel description')
+          return
+        }
 
-  if (!price || Number(price) <= 0) {
-    alert('Please enter a valid hotel price')
-    return
-  }
+        if (!price || Number(price) <= 0) {
+          alert('Please enter a valid hotel price')
+          return
+        }
 
-  // if (latitude === '' || Number(latitude) < -90 || Number(latitude) > 90) {
-  //   alert('Latitude must be between -90 and 90')
-  //   return
-  // }
 
-  // if (longitude === '' || Number(longitude) < -180 || Number(longitude) > 180) {
-  //   alert('Longitude must be between -180 and 180')
-  //   return
-  // }
+        if (!image) {
+          alert('Please select a hotel image')
+          return
+        }
 
-  if (!image) {
-    alert('Please select a hotel image')
-    return
-  }
-
-  onSave({
-    ...hotel,
-    name: name.trim(),
-    location: location.trim(),
-    description: description.trim(),
-    price: Number(price),
-    // latitude: Number(latitude),
-    // longitude: Number(longitude),
-    image
-  })
-}
+        onSave({
+          ...hotel, //spread operator i need to learn more on this 
+          name: name.trim(),
+          location: location.trim(),
+          description: description.trim(),
+          price: Number(price),
+          image
+        })
+      }
 
   return (
     <div className="form-overlay">

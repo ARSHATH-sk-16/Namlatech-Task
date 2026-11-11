@@ -49,14 +49,6 @@ function HotelDetails() {
         <p>Latitude: {hotel.latitude ?? 'Not provided'}</p>
         <p>Longitude: {hotel.longitude ?? 'Not provided'}</p>
 
-        {hotel.latitude != null && hotel.longitude != null && (
-          <iframe
-            title={`${hotel.name} location map`}
-            className="hotel-map"
-            src={`https://www.openstreetmap.org/export/embed.html?marker=${hotel.latitude}%2C${hotel.longitude}`}
-            loading="lazy"
-          />
-        )}
       </div>
     </div>
   )
