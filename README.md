@@ -34,7 +34,7 @@ HotelHub is a React-based hotel listing and management application. Users can ex
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/ARSHATH-sk-16/namalatech-project.git
+git clone https://github.com/ARSHATH-sk-16/Namlatech-task.git
 ```
 
 ### 2. Navigate to the project directory
