@@ -124,6 +124,17 @@ A backend API and database are not included in this frontend-only implementation
 - Add/Edit hotel form
 - Search and price filter
 
+## 📂 Project Submission Files
+
+The following files are available in Google Drive:
+
+- Screenshots of the project
+- Project demonstration video
+- Complete project ZIP folder
+
+**Google Drive Link:**  
+[Click here to access project files](https://drive.google.com/drive/folders/16EsO0S2f8Z5kNWou6VTXTGWqQSJnGZgB?usp=drive_link)
+
 ## Author
 
 Developed as a frontend implementation task for Namlatech.
